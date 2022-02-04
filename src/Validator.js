@@ -1,22 +1,53 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Validator.css';
 
 function Validator () {
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  const [passwordConfirm, setPasswordConfirm] =useState("")
+
+  const handleUsernameChange =(event) => {
+    // console.log("Something happened inside the username field")
+    console.log(event.target.value)
+    setUsername(event.target.value)
+  }
+
+  const handlePasswordChange =(event) => {
+    // console.log("Something happened inside the password field")
+    console.log(event.target.value)
+    setPassword(event.target.value)
+  }
+
+  const handlePasswordConfirm =(event) => {
+    // console.log("Something happened in the confirm username field")
+    console.log(event.target.value)
+    setPasswordConfirm(event.target.value)
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    console.log("The submit function was run")
+    let submit =""
+    if(password === passwordConfirm){
+      console.log("valid password")
+    }else {
+      console.log("invalid password")
+    }
+  }
+
     return (
       <div className="form">
         <h1>Sign Up</h1>
-        <form>
-          <input type="text" placeholder="Username" id="username" />
+        <form onSubmit={handleSubmit}>
+          <input type="text" placeholder="Username" id="username" value={username} onChange={handleUsernameChange}/>  
           <label htmlFor="username">Username</label>
 
-          <input type="password" placeholder="Password" id="password" />
+          <input type="password" placeholder="Password" id="password" value={password} onChange={handlePasswordChange} />
           <label htmlFor="password">Password</label>
 
           <input
             type="password"
-            placeholder="Confirm password"
-            id="passwordConfirm"
-          />
+            placeholder="Confirm password" id="passwordConfirm" value={passwordConfirm} onChange={handlePasswordConfirm}/>
           <label htmlFor="passwordConfirm">Confirm password</label>
 
           <button type="submit">Sign Up</button>
