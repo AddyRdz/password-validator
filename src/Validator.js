@@ -5,6 +5,8 @@ function Validator () {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [passwordConfirm, setPasswordConfirm] =useState("")
+  const [passwordMessage, setPasswordMessage] =useState("")
+  
 
   const handleUsernameChange =(event) => {
     // console.log("Something happened inside the username field")
@@ -27,13 +29,15 @@ function Validator () {
   const handleSubmit = (event) => {
     event.preventDefault()
     console.log("The submit function was run")
-    let submit =""
     if(password === passwordConfirm){
-      console.log("valid password")
+      setPasswordMessage("valid password")
     }else {
-      console.log("invalid password")
+      setPasswordMessage("invalid password")
     }
   }
+    
+  
+
 
     return (
       <div className="form">
@@ -50,7 +54,8 @@ function Validator () {
             placeholder="Confirm password" id="passwordConfirm" value={passwordConfirm} onChange={handlePasswordConfirm}/>
           <label htmlFor="passwordConfirm">Confirm password</label>
 
-          <button type="submit">Sign Up</button>
+          <button type="submit" onChange={handleSubmit}>Sign Up</button>
+          <p>{passwordMessage}</p>
           <p>Passwords must match.</p>
         </form>
       </div>
